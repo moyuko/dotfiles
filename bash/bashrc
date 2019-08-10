@@ -1,0 +1,33 @@
+_change_repo() {
+ cd $(ghq list -p | peco)
+}
+
+_load_bash_completions() {
+  local completions=(
+    "/usr/local/etc/bash_completion"
+    "/usr/local/etc/bash_completion.d/git-completion.bash"
+  )
+  for completion in ${completions[@]} ; do
+    test -e ${completion} && . ${completion}
+  done
+}
+
+_color() {
+  echo "\[\033[38;5;${1}m\]${2}\[\033[m\]"
+}
+
+main() {
+  export PS1="$(_color "75" "[")$(_color "110" "\u")$(_color "75" "@")$(_color "110" "\h")$(_color "75" ":")$(_color "110" "\W")$(_color "75" "][")$(_color "110" "\$(__git_ps1 "%s")")$(_color "75" "]")\n$(_color "75" "$ ")"
+  export PS2="$(_color "75" "$") "
+  export EDITOR="/usr/local/bin/atom"
+  export PATH="/usr/local/bin:${PATH}"
+  export GOPATH="${HOME}"
+  export GHQ_ROOT="${HOME}/src"
+  export GIT_PS1_SHOWDIRTYSTATE=true
+
+  alias cr=_change_repo
+
+  _load_bash_completions
+}
+
+main "${@}"

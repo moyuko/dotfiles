@@ -1,0 +1,12 @@
+cask_args appdir: '/Applications'
+tap 'caskroom/cask'
+
+brew 'git'
+brew 'bash-completion'
+brew 'ghq'
+brew 'peco'
+brew 'go'
+
+cask 'iterm2'
+cask 'atom'
+cask 'basecamp'

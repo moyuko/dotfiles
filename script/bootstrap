@@ -1,0 +1,19 @@
+configure_bash() {
+  echo "Configuring bash..."
+  ln -sf $(pwd)/bash/bash_profile ~/.bash_profile
+  ln -sf $(pwd)/bash/bashrc       ~/.bashrc
+  echo "Done"
+}
+
+configure_git() {
+  echo "Configuring git..."
+  ln -sf $(pwd)/git/gitconfig ~/.gitconfig
+  echo "Done"
+}
+
+main() {
+  configure_bash
+  configure_git
+}
+
+main "${@}"s
